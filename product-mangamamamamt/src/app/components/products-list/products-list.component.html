@@ -1,0 +1,40 @@
+<!-- Search Bar -->
+<div class="search-bar">
+    <input [(ngModel)]="name" placeholder="Search by nom" class="form-control" />
+    <button class="btn btn-primary" (click)="searchName()">Search</button>
+  </div>
+  
+  <!-- Main Container for Product List and Details -->
+  <div class="list-container">
+    <!-- Product List Section -->
+    <div class="product-list">
+      <h4>Liste des produits</h4>
+      <ul class="list-group">
+        <li
+          *ngFor="let product of products; let i = index"
+          class="list-group-item"
+          [class.active]="i === currentIndex"
+          (click)="setActiveProduct(product, i)"
+        >
+          {{ product.name }}
+        </li>
+      </ul>
+      <button class="btn btn-danger" (click)="deleteAllProducts()">Supprimer tout</button>
+    </div>
+  
+    <!-- Product Details Section -->
+    <div class="product-details">
+      <h4>Product</h4>
+      <div *ngIf="currentProduct">
+        <p><strong>nom:</strong> {{ currentProduct?.name }}</p>
+        <p><strong>Description:</strong> {{ currentProduct?.description }}</p>
+        <p><strong>Prix:</strong> {{ currentProduct?.price }}</p>
+        <p><strong>Status:</strong> {{ currentProduct?.publication ? "Publié" : "Pending" }}</p>
+        <button class="btn btn-warning" (click)="editProduct()">Edit</button>
+      </div>
+      <div *ngIf="!currentProduct">
+        <p>Cliquez sur un produit...</p>
+      </div>
+    </div>
+  </div>
+  

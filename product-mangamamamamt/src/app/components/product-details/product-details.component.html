@@ -1,0 +1,43 @@
+<div class="form-container">
+    <h4>Update Product</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input
+          id="name"
+          [(ngModel)]="currentProduct.name"
+          name="name"
+          class="form-control"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          id="description"
+          [(ngModel)]="currentProduct.description"
+          name="description"
+          class="form-control"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Prix</label>
+        <input
+          id="price"
+          [(ngModel)]="currentProduct.price"
+          name="price"
+          type="number"
+          class="form-control"
+        />
+      </div>
+  
+      <p><strong>Status:</strong> {{ currentProduct.publication ? "Publié" : "Pending" }}</p>
+  
+      <button class="btn btn-success" (click)="updateProduct()">Mettre à jour</button>
+    </form>
+  
+    <p *ngIf="message" class="message">{{ message }}</p>
+  </div>
+  
