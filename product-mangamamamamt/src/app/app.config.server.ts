@@ -12,3 +12,9 @@ const serverConfig: ApplicationConfig = {
 };
 
 export const config = mergeApplicationConfig(appConfig, serverConfig);
+
+export function getPrerenderParams() {
+  return [
+    { id: 'default' }
+  ];
+}

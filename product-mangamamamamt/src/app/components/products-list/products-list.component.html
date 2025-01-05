@@ -26,10 +26,10 @@
     <div class="product-details">
       <h4>Product</h4>
       <div *ngIf="currentProduct">
-        <p><strong>nom:</strong> {{ currentProduct?.name }}</p>
-        <p><strong>Description:</strong> {{ currentProduct?.description }}</p>
-        <p><strong>Prix:</strong> {{ currentProduct?.price }}</p>
-        <p><strong>Status:</strong> {{ currentProduct?.publication ? "Publié" : "Pending" }}</p>
+        <p><strong>nom:</strong> {{ currentProduct.name }}</p>
+        <p><strong>Description:</strong> {{ currentProduct.description }}</p>
+        <p><strong>Prix:</strong> {{ currentProduct.price }}</p>
+        <p><strong>Status:</strong> {{ currentProduct.publication ? "Publié" : "Pending" }}</p>
         <button class="btn btn-warning" (click)="editProduct()">Edit</button>
       </div>
       <div *ngIf="!currentProduct">

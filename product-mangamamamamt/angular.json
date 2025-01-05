@@ -38,6 +38,7 @@
           },
           "configurations": {
             "production": {
+              "outputMode": "static",
               "budgets": [
                 {
                   "type": "initial",
@@ -97,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b8c3feac-b6cf-40c0-a3c0-60c7ea852fbe"
   }
 }

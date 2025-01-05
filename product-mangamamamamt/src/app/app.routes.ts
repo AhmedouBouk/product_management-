@@ -7,6 +7,8 @@ export const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
   { path: 'products', component: ProductsListComponent },
   { path: 'add', component: AddProductComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'products/:id/edit', component: ProductDetailsComponent },
+  { 
+    path: 'products/:id/edit', 
+    component: ProductDetailsComponent
+  }
 ];
