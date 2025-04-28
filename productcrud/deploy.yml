@@ -1,0 +1,59 @@
+---
+- name: Deploy Spring Boot application
+  hosts: all
+  become: true
+  vars:
+    app_name: productcrud
+    container_name: productcrud
+    image_name: productcrud
+    app_port: 8080
+
+  tasks:
+    - name: Install Docker dependencies
+      apt:
+        name: 
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+        update_cache: yes
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: Copy Docker image to remote server
+      copy:
+        src: "{{ app_name }}.tar"
+        dest: "/tmp/{{ app_name }}.tar"
+
+    - name: Load Docker image
+      command: docker load -i /tmp/{{ app_name }}.tar
+
+    - name: Stop existing container
+      docker_container:
+        name: "{{ container_name }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Run Docker container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}:latest"
+        state: started
+        ports:
+          - "{{ app_port }}:8080"
+        restart_policy: always
